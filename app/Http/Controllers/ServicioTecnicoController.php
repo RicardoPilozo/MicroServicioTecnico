@@ -41,7 +41,7 @@ class ServicioTecnicoController extends Controller
             \DB::raw("CONCAT(usuario.nombre_usu, ' ', usuario.apellido_usu) AS nombre_usuario"),
             \DB::raw("CONCAT(cliente.nombre_clie, ' ', cliente.apellido_clie) AS nombre_cliente")
         )
-        ->orderBy('servicio_tecnico.id_servicio', 'asc');
+        ->orderBy('servicio_tecnico.id_servicio', 'desc');
 
         // Aplicar los filtros de búsqueda si se proporcionan
         if ($search) {
