@@ -28,9 +28,12 @@ class ServicioTecnicoController extends Controller
             'servicio_tecnico.id_servicio',
             'servicio_tecnico.fecha_ingreso_serv',
             'servicio_tecnico.fecha_salida_serv',
+            'servicio_tecnico.numero_comprobante',
             'servicio_tecnico.descripcion_serv',
             'servicio_tecnico.estado_serv', 
             'servicio_tecnico.precio_serv',
+            'servicio_tecnico.precio_repuestos',
+            'servicio_tecnico.total_servicio',
             'servicio_tecnico.id_cliente', 
             'servicio_tecnico.id_usuario',
             'servicio_tecnico.id_transacciones',
@@ -110,13 +113,16 @@ class ServicioTecnicoController extends Controller
         $servicio_tecnico = new Servicio_Tecnico;
         $servicio_tecnico->fecha_ingreso_serv = $request->input('fecha_ingreso_serv');
         $servicio_tecnico->fecha_salida_serv = $request->input('fecha_salida_serv');
+        $servicio_tecnico->numero_comprobante = $request->input('numero_comprobante');
         $servicio_tecnico->descripcion_serv = $request->input('descripcion_serv');
         $servicio_tecnico->estado_serv = $request->input('estado_serv');
         $servicio_tecnico->precio_serv = $request->input('precio_serv');
+        $servicio_tecnico->precio_repuestos = $request->input('precio_repuestos');
+        $servicio_tecnico->total_servicio = $request->input('total_servicio');
         $servicio_tecnico->id_usuario = $request->input('id_usuario');
         $servicio_tecnico->id_cliente = $request->input('id_cliente');
         $servicio_tecnico->id_transacciones = $request->input('id_transacciones');
-
+        $servicio_tecnico->save();
         return response()->json(['message' => 'Servicio tecnico creado con éxito', 'data' => $servicio_tecnico]);
     }
 
@@ -152,7 +158,7 @@ class ServicioTecnicoController extends Controller
         $servicio_tecnico->descripcion_serv = $request->input('descripcion_serv');
         $servicio_tecnico->estado_serv = $request->input('estado_serv');
         $servicio_tecnico->precio_serv = $request->input('precio_serv');
-
+        $servicio_tecnico->precio_repuestos = $request->input('precio_repuestos');
         // Guardar los cambios en la base de datos
         $servicio_tecnico->save();
 

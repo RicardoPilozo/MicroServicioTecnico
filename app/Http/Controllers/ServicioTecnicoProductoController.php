@@ -47,16 +47,16 @@ class ServicioTecnicoProductoController extends Controller
 /*************************************************************************** */
     public function store(Request $request)
     {
-        $detalle = new Detalle;
-        $detalle->cantidad = $request->input('cantidad');
-        $detalle->valor_unitario = $request->input('valor_unitario');
-        $detalle->id_inventario = $request->input('id_inventario');
-        $detalle->id_movimiento = $request->input('id_movimiento');
-        $detalle->id_producto = $request->input('id_producto');
+        $servicioTecnicoProducto = new Servicio_Tecnico_Producto;
+        $servicioTecnicoProducto->cantidad = $request->input('cantidad');
+        $servicioTecnicoProducto->valor_unitario = $request->input('valor_unitario');
+        $servicioTecnicoProducto->id_inventario = $request->input('id_inventario');
+        $servicioTecnicoProducto->id_servicio = $request->input('id_servicio');
+        $servicioTecnicoProducto->id_producto = $request->input('id_producto');
+        $servicioTecnicoProducto->save();
 
-        $detalle->save();
+        return response()->json(['message' => 'Servicio Tecnico Producto agregado exitosamente', 'data' => $servicioTecnicoProducto]);
 
-        return response()->json(['message' => 'Detalle agregado exitosamente', 'data' => $detalle]);
     }
 /*************************************************************************** */
 
