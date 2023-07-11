@@ -17,8 +17,6 @@ class ServicioTecnicoController extends Controller
         $search = $request->input('search'); // Término de búsqueda
 
         $valorFinalServicio = 0;
-        
-
 
         $query = Servicio_Tecnico::query()
         ->join('usuario', 'servicio_tecnico.id_usuario', '=', 'usuario.id_usuario')
@@ -39,7 +37,8 @@ class ServicioTecnicoController extends Controller
             'servicio_tecnico.id_transacciones',
             'transacciones.tipo_pago',
             \DB::raw("CONCAT(usuario.nombre_usu, ' ', usuario.apellido_usu) AS nombre_usuario"),
-            \DB::raw("CONCAT(cliente.nombre_clie, ' ', cliente.apellido_clie) AS nombre_cliente")
+            \DB::raw("CONCAT(cliente.nombre_clie, ' ', cliente.apellido_clie) AS nombre_cliente"),
+            'servicio_tecnico.ganancia_serv',
         )
         ->orderBy('servicio_tecnico.id_servicio', 'desc');
 
@@ -89,10 +88,6 @@ class ServicioTecnicoController extends Controller
             
         });
 
-        
-        
-        
-        
         $servicios = $query->get();
 
         return response()->json([
@@ -122,6 +117,7 @@ class ServicioTecnicoController extends Controller
         $servicio_tecnico->id_usuario = $request->input('id_usuario');
         $servicio_tecnico->id_cliente = $request->input('id_cliente');
         $servicio_tecnico->id_transacciones = $request->input('id_transacciones');
+        $servicio_tecnico->ganancia_serv = $request->input('ganancia_serv');
         $servicio_tecnico->save();
         return response()->json(['message' => 'Servicio tecnico creado con éxito', 'data' => $servicio_tecnico]);
     }

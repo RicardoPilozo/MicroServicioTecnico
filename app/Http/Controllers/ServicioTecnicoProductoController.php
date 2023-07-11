@@ -53,6 +53,7 @@ class ServicioTecnicoProductoController extends Controller
         $servicioTecnicoProducto->id_inventario = $request->input('id_inventario');
         $servicioTecnicoProducto->id_servicio = $request->input('id_servicio');
         $servicioTecnicoProducto->id_producto = $request->input('id_producto');
+        $servicioTecnicoProducto->ganancia_serv_prod= $request->input('ganancia_serv_prod');
         $servicioTecnicoProducto->save();
 
         return response()->json(['message' => 'Servicio Tecnico Producto agregado exitosamente', 'data' => $servicioTecnicoProducto]);
